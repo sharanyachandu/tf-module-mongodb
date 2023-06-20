@@ -1,21 +1,21 @@
 # Creates Security Group 
-resource "aws_security_group" "allow_mongodb" {
-  name               = "robot-${var.ENV}-mongodb-sg"
-  description        = "Allows MongoDB Internal inbound traffic"
+resource "aws_security_group" "allow_redis" {
+  name               = "robot-${var.ENV}-redis-sg"
+  description        = "Allows redis Internal inbound traffic"
   vpc_id             = data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
-    description      = "Allows docdb from local network"
-    from_port        = var.DOCDB_PORT
-    to_port          = var.DOCDB_PORT
+    description      = "Allows redis from local network"
+    from_port        = var.redis_PORT
+    to_port          = var.redis_PORT
     protocol         = "tcp"
     cidr_blocks      = [data.terraform_remote_state.vpc.outputs.DEFAULT_VPC_CIDR]
   }
 
   ingress {
-    description      = "Allows docdb from default network"
-    from_port        = var.DOCDB_PORT
-    to_port          = var.DOCDB_PORT
+    description      = "Allows redis from default network"
+    from_port        = var.redis_PORT
+    to_port          = var.redis_PORT
     protocol         = "tcp"
     cidr_blocks      = [data.terraform_remote_state.vpc.outputs.VPC_CIDR]
   }
@@ -28,6 +28,6 @@ resource "aws_security_group" "allow_mongodb" {
   }
 
   tags = {
-    Name = "robot-${var.ENV}-mongodb-sg"
+    Name = "robot-${var.ENV}-redis-sg"
   }
 }
