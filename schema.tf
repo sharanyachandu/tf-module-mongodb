@@ -10,8 +10,8 @@ resource "null_resource" "schema" {
         unzip -o mongodb.zip
         cd mongodb-main 
         wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
-        mongo --ssl --host ${aws_docdb_cluster.docdb.endpoint} --sslCAFile rds-combined-ca-bundle.pem --username admin1 --password roboshop1  < catalogue.js
-        mongo --ssl --host ${aws_docdb_cluster.docdb.endpoint} --sslCAFile rds-combined-ca-bundle.pem --username admin1 --password roboshop1  < users.js
+        mongo --ssl --host ${aws_docdb_cluster.docdb.endpoint} --sslCAFile rds-combined-ca-bundle.pem --username centos --password DevOps321  < catalogue.js
+        mongo --ssl --host ${aws_docdb_cluster.docdb.endpoint} --sslCAFile rds-combined-ca-bundle.pem --username centos --password DevOps321  < users.js
         EOF
     }
 
